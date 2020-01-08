@@ -4,7 +4,13 @@ import java.util.Scanner;
 class Vehicle{
     String brand;
     String licensePlateNum;
-    public Vehicle(){}
+    public Vehicle(){
+
+    }
+    public Vehicle(String brand,String licensePlateNum){
+        this.brand = brand;
+        this.licensePlateNum = licensePlateNum;
+    }
     public double getSumRental(int days){
         return 0;
     }
@@ -12,13 +18,12 @@ class Vehicle{
 
 
 class Car extends Vehicle{
-    String model;
+    private String model;
     public Car(){
 
     }
     public Car(String brand,String licensePlateNum,int choice){
-        super.brand = brand;
-        super.licensePlateNum = licensePlateNum;
+        super(brand,licensePlateNum);
         switch(choice){
         case 1:
             this.model = "两厢";
@@ -50,13 +55,12 @@ class Car extends Vehicle{
 }
 
 class Bus extends Vehicle{
-    int seats;
+    private int seats;
     public Bus(){
 
     }
     public Bus(String brand,String licensePlateNum,int seats){
-        super.brand = brand;
-        super.licensePlateNum = licensePlateNum;
+        super(brand,licensePlateNum);
         this.seats = seats;
     }
     public String toString(){
@@ -85,30 +89,26 @@ class Test{
         System.out.print("请选择交通工具的种类:\n(1)Car\n(2)Bus\n请选择: (1/2)?");
         int choice = sc.nextInt();
 
+        Vehicle v;
         switch(choice){
         case 1:
             System.out.println("请选择Car的车型:\n(1)两厢\n(2)三厢\n(3)越野\n请选择:(1/2/3)?");
             choice = sc.nextInt();
-            Car v1 = new Car(brand,licensePlateNum,choice);
-            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~");
-            System.out.println("您的选择是:");
-            System.out.println(v1);
-            System.out.println("租金是:");
-            System.out.println(v1.getSumRental(days));
+            v = new Car(brand,licensePlateNum,choice);
             break;
         case 2:
             System.out.println("请输入Bus的座位数:");
             int seats = sc.nextInt();
-            Bus v2 = new Bus(brand,licensePlateNum,seats);
-            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~");
-            System.out.println("您的选择是:");
-            System.out.println(v2);
-            System.out.println("租金是:");
-            System.out.println(v2.getSumRental(days));
+            v = new Bus(brand,licensePlateNum,seats);
             break;
         default:
             System.out.println("error input!!!");
             return;
         }
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println("您的选择是:");
+        System.out.println(v);
+        System.out.println("租金是:");
+        System.out.println(v.getSumRental(days));
     }
 }
