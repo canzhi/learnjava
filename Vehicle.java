@@ -1,3 +1,5 @@
+package com.credata.xiaorui.packages.p2;
+
 import java.util.Scanner;
 
 
